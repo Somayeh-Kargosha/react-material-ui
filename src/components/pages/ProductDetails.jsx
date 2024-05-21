@@ -21,7 +21,7 @@ function ProductDetails() {
               جاروبرقی پارس خزر مدل VC-2200W
             </Typography>
             <Box my="40px">
-              <Divider variant="inset" textAlign="left" sx={{ width: "100%" }}>
+              <Divider textAlign="left" sx={{ width: "100%" }}>
                 <Typography component="span" sx={{ fontSize: 15 }}>
                   Pars Khazar VC-2200W Vacuum Cleaner
                 </Typography>
@@ -97,7 +97,7 @@ function ProductDetails() {
           >
             <Box
               display="flex"
-              justifyContent="left"
+              justifyContent="right"
               marginTop={5}
               alignItems="center"
             >
@@ -111,13 +111,13 @@ function ProductDetails() {
                 borderRadius={5}
                 color="white"
                 fontSize={14}
-                marginRight={2}
+                marginLeft={1}
               >
                 ۳٪
               </Typography>
             </Box>
             <ErrorOutlineRoundedIcon sx={{ fontSize: 20, color: "grey" }} />
-            <Typography fontSize={18} color="#111" align="left">
+            <Typography fontSize={18} color="#111" align="right">
               ۵,۲۹۵,۰۰۰
             </Typography>
             <Typography variant="body2" color="red" marginY={2}>
@@ -173,7 +173,6 @@ function ProductDetails() {
           sm={4}
           xs={5}
           sx={{
-            display: "flex-column",
             my: 2,
           }}
         >
@@ -199,7 +198,6 @@ function ProductDetails() {
           sm={5.5}
           xs={7}
           sx={{
-            display: "flex-column",
             my: 2,
           }}
         >

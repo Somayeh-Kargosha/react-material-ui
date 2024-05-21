@@ -21,7 +21,7 @@ function FooterNavigation() {
             <ShoppingCartOutlinedIcon
               sx={{
                 color: "#4d4d4d",
-                mr: 1,
+                ml: 1,
               }}
             />
           </Box>

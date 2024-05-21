@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "categoryName": "جاروبرقی",
+      "image": "public/1.webp",
+      "id": "1"
+    },
+    {
+      "categoryName": "ماشین لباسشویی",
+      "image": "public/2.webp",
+      "id": "2"
+    },
+    {
+      "categoryName": "سرمایش و گرمایش",
+      "image": "public/3.webp",
+      "id": "3"
+    },
+    {
+      "categoryName": "یخچال",
+      "image": "public/4.webp",
+      "id": "4"
+    },
+    {
+      "categoryName": "پخت و پز",
+      "image": "public/5.webp",
+      "id": "5"
+    },
+    {
+      "categoryName": "اتو",
+      "image": "public/6.webp",
+      "id": "6"
+    },
+    {
+      "categoryName": "فر و گاز",
+      "image": "public/7.webp",
+      "id": "7"
+    },
+    {
+      "categoryName": "ماشین ظرفشویی",
+      "image": "public/8.webp",
+      "id": "8"
+    },
+    {
+      "categoryName": "صوتی و تصویری",
+      "image": "public/9.webp",
+      "id": "9"
+    },
+    {
+      "categoryName": "نوشیدنی ساز",
+      "image": "public/10.webp",
+      "id": "10"
+    },
+    {
+      "categoryName": "خردکن و غذاساز",
+      "image": "public/11.webp",
+      "id": "11"
+    },
+    {
+      "categoryName": "چرخ خیاطی",
+      "image": "public/12.webp",
+      "id": "12"
+    }
+  ]
+}

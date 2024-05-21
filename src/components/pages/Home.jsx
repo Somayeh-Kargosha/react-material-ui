@@ -4,15 +4,22 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import ProductCategoriesItem from "../ui/ProductCategoriesItem";
+import { useLoaderData } from "react-router-dom";
 
 function Home() {
+  const categories = useLoaderData();
+
   return (
     <Container sx={{ marginY: 20, color: "#4d4d4d" }}>
       <Typography align="center" variant="h6" sx={{ p: 5 }}>
         خرید بر اساس دسته بندی
       </Typography>
       <Grid container rowSpacing={5} columnSpacing={0} justifyContent="center">
-        <ProductCategoriesItem to="/vacuumproducts" src="public/1.webp">
+        {categories.map((category) => (
+          <ProductCategoriesItem category={category} key={category.id} />
+        ))}
+
+        {/* <ProductCategoriesItem to="/vacuumproducts" src="public/1.webp">
           جاروبرقی
         </ProductCategoriesItem>
         <ProductCategoriesItem to="/vacuumproducts" src="public/2.webp">
@@ -47,7 +54,7 @@ function Home() {
         </ProductCategoriesItem>
         <ProductCategoriesItem to="/vacuumproducts" src="public/12.webp">
           چرخ خیاطی
-        </ProductCategoriesItem>
+        </ProductCategoriesItem> */}
       </Grid>
     </Container>
   );

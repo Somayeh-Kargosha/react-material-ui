@@ -23,7 +23,7 @@ function ShoppingCart() {
                 <Box component="img" src="public/1.1.webp" width="140px" />
               </Grid>
               <Grid item sm={8} xs={12}>
-                <Box>
+                <Box marginLeft={1}>
                   <Typography variant="h6">
                     جاروبرقی پارس خزر مدل VC_2200W
                   </Typography>
@@ -31,7 +31,7 @@ function ShoppingCart() {
                     display="flex"
                     alignItems="center"
                     marginY={3}
-                    marginRight={0.5}
+                    marginLeft={0.5}
                   >
                     <Box
                       component="span"
@@ -78,7 +78,7 @@ function ShoppingCart() {
                     >
                       <AddOutlinedIcon sx={{ fontSize: 18 }} />
                     </Box>
-                    <Box display="flex-column" sx={{ textAlign: "center" }}>
+                    <Box sx={{ textAlign: "center" }}>
                       <Typography color="#ff5454" fontSize={15}>
                         ۱
                       </Typography>
@@ -100,7 +100,7 @@ function ShoppingCart() {
                 </Box>
               </Grid>
               <Grid item sm={8} xs={6}>
-                <Box marginY={3}>
+                <Box marginY={3} marginX={1}>
                   <Typography variant="subtitle1" marginY={1}>
                     ۱۷۹,۶۰۰ تومان تخفیف
                   </Typography>

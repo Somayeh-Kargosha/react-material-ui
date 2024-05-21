@@ -19,7 +19,7 @@ function Header() {
                     maxWidth: { xs: 80, sm: 110 },
                     mt: { sm: 1 },
                     position: { xs: "absolute", sm: "static" },
-                    left: 70,
+                    right: 70,
                     top: 20,
                   }}
                 />
@@ -38,7 +38,7 @@ function Header() {
                 }}
               >
                 <SearchIcon sx={{ color: grey[500] }} />
-                <InputBase sx={{ mr: 3, fontSize: 14 }} placeholder="جستجو" />
+                <InputBase sx={{ ml: 3, fontSize: 14 }} placeholder="جستجو" />
               </Box>
             </Grid>
 
