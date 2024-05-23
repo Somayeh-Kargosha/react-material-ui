@@ -3,7 +3,8 @@ import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { FormatPrice } from "../../utils/helpers";
 
 function ProductItem({ product }) {
-  const { productName, image, price, discount } = product;
+  const { productName, imageName, price, discount, id, fileImageName, quantity } =
+    product;
   return (
     <Grid item>
       <Paper
@@ -18,22 +19,33 @@ function ProductItem({ product }) {
           height: 510,
         }}
       >
-        <Link component={RouterLink} to="/productdetails">
-          <Box component="img" src={image} width="350px" p={5} />
+        <Link component={RouterLink} to={`/product/${id}`}>
+          <Box
+            component="img"
+            src={`/${fileImageName}/${imageName}`}
+            width="350px"
+            p={5}
+          />
           <Box>
             <Typography variant="body2" color="#415966" px={2}>
               {productName}
             </Typography>
-            <Typography variant="subtitle1" p={3}>
-              تنها یک عدد در انبار باقی مانده
-            </Typography>
+            {quantity <= 1 ? (
+              <Typography variant="subtitle1" p={3}>
+                تنها یک عدد در انبار باقی مانده
+              </Typography>
+            ) : (
+              <Typography variant="body1" p={3} fontSize={11}>
+                موجود در انبار دیجی کالا
+              </Typography>
+            )}
             <Typography
               variant="subtitle2"
               color="#415966"
               px={3}
               align="right"
             >
-              {FormatPrice(price - discount)}
+              {FormatPrice(price - (price * discount) / 100)}
             </Typography>
             <Typography
               variant="body1"

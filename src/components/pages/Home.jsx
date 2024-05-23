@@ -16,7 +16,11 @@ function Home() {
       </Typography>
       <Grid container rowSpacing={5} columnSpacing={0} justifyContent="center">
         {categories.map((category) => (
-          <ProductCategoriesItem category={category} key={category.id} />
+          <ProductCategoriesItem
+            category={category}
+            to={`/category-${category.category}`}
+            key={category.id}
+          />
         ))}
 
         {/* <ProductCategoriesItem to="/vacuumproducts" src="public/1.webp">

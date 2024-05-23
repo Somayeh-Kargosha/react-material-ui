@@ -14,7 +14,7 @@ function Header() {
               <Link component={RouterLink} to="/">
                 <Box
                   component="img"
-                  src="public/logo.svg"
+                  src="/logo.svg"
                   sx={{
                     maxWidth: { xs: 80, sm: 110 },
                     mt: { sm: 1 },

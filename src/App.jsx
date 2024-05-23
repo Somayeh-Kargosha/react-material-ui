@@ -9,10 +9,19 @@ import { grey } from "@mui/material/colors";
 import AppLayout from "./components/ui/AppLayout";
 import Home from "./components/pages/Home";
 import VacuumProducts from "./components/pages/VacuumProducts";
+import WashingMashineProducts from "./components/pages/WashingMashineProducts";
 import ProductDetails from "./components/pages/ProductDetails";
 import ShoppingCart from "./components/pages/ShoppingCart";
 import { loader as categoriesLoader } from "./services/apiCategories";
-import { loader as productsLoader } from "./services/apiProducts";
+import {
+  airTreatmentProductsLoader,
+  vacuumProductsLoader,
+  washingMachineProductsLoader,
+} from "./services/apiProducts";
+
+import { productsLoader } from "./services/apiProducts";
+import Error from "./components/ui/Error";
+import AirTreatmentProducts from "./components/pages/AirTreatmentProducts";
 
 const theme = createTheme({
   direction: "rtl",
@@ -55,20 +64,37 @@ const theme = createTheme({
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
         element: <Home />,
         loader: categoriesLoader,
+        errorElement: <Error />,
       },
       {
-        path: "/vacuumproducts",
+        path: "/category-vacuum-cleaner",
         element: <VacuumProducts />,
-        loader: productsLoader,
+        loader: vacuumProductsLoader,
+        errorElement: <Error />,
       },
       {
-        path: "/productdetails",
+        path: "/category-washing-machine",
+        element: <WashingMashineProducts />,
+        loader: washingMachineProductsLoader,
+        errorElement: <Error />,
+      },
+      {
+        path: "/category-air-treatment",
+        element: <AirTreatmentProducts />,
+        loader: airTreatmentProductsLoader,
+        errorElement: <Error />,
+      },
+      {
+        path: "/product/:productId",
         element: <ProductDetails />,
+        loader: productsLoader,
+        errorElement: <Error />,
       },
       {
         path: "/shoppingcart",

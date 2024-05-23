@@ -1,15 +1,30 @@
 import { Box, Button, Card, Divider, Grid, Typography } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
+import { useLoaderData } from "react-router-dom";
+import { FormatPrice } from "../../utils/helpers";
 
 function ProductDetails() {
+  const products = useLoaderData();
+
+  const {
+    productName,
+    imageName,
+    price,
+    discount,
+    description,
+    fileImageName,
+    quantity,
+    latinName,
+  } = products;
+
   return (
     <>
       <Grid container sx={{ display: "flex", mt: 25, px: { sm: 2, xs: 1 } }}>
         <Grid item md={4} sm={12} marginBottom={6}>
           <Box
             component="img"
-            src="public/1.1.webp"
+            src={`/${fileImageName}/${imageName}`}
             sx={{
               width: { lg: "450px", md: "400px", sm: "400px", xs: "350px" },
             }}
@@ -18,12 +33,12 @@ function ProductDetails() {
         <Grid item md={4.5} sm={7} xs={12}>
           <Box padding={2}>
             <Typography variant="h6" color="#111">
-              جاروبرقی پارس خزر مدل VC-2200W
+              {productName}
             </Typography>
             <Box my="40px">
               <Divider textAlign="left" sx={{ width: "100%" }}>
                 <Typography component="span" sx={{ fontSize: 15 }}>
-                  Pars Khazar VC-2200W Vacuum Cleaner
+                  {latinName}
                 </Typography>
               </Divider>
             </Box>
@@ -102,7 +117,7 @@ function ProductDetails() {
               alignItems="center"
             >
               <Typography component="s" fontSize={13}>
-                ۵,۴۷۴,۶۰۰
+                {FormatPrice(price)}
               </Typography>
               <Typography
                 component="span"
@@ -113,16 +128,25 @@ function ProductDetails() {
                 fontSize={14}
                 marginLeft={1}
               >
-                ۳٪
+                %{discount}
               </Typography>
             </Box>
             <ErrorOutlineRoundedIcon sx={{ fontSize: 20, color: "grey" }} />
             <Typography fontSize={18} color="#111" align="right">
-              ۵,۲۹۵,۰۰۰
+              {FormatPrice(price - (price * discount) / 100)}
             </Typography>
-            <Typography variant="body2" color="red" marginY={2}>
+            {quantity <= 1 ? (
+              <Typography variant="body2" color="red" marginY={2}>
+                تنها یک عدد در انبار باقی مانده
+              </Typography>
+            ) : (
+              <Typography variant="body1" marginY={2} fontSize={13}>
+                موجود در انبار دیجی کالا
+              </Typography>
+            )}
+            {/* <Typography variant="body2" color="red" marginY={2}>
               تنها یک عدد در انبار باقی مانده
-            </Typography>
+            </Typography> */}
             <Button
               variant="contained"
               disableElevation="false"
@@ -140,7 +164,7 @@ function ProductDetails() {
               افزودن به سبد
             </Button>
             <Typography variant="body2" margin={2} marginBottom={3}>
-              گارانتی ۲۴ ماهه پارس خزر
+              گارانتی ۲۴ ماهه
             </Typography>
             <Divider variant="middle" />
             <Typography variant="body2" margin={2} marginTop={3}>
@@ -155,19 +179,31 @@ function ProductDetails() {
       />
 
       <Grid container sx={{ px: { sm: 5, xs: 1 }, mb: 10 }}>
-        <Grid item sm={2.5} xs={12}>
+        <Grid item sm={1} xs={12}>
           <Typography
-            fontSize={16}
+            fontSize={18}
             color="#111"
             sx={{
               textDecoration: "underline red 2px",
               textUnderlineOffset: 13,
             }}
           >
-            مشخصات
+            معرفی
           </Typography>
         </Grid>
         <Grid
+          item
+          sm={9}
+          xs={12}
+          sx={{
+            my: 2,
+          }}
+        >
+          <Typography fontSize={15} marginTop={2} lineHeight={3}>
+            {description}
+          </Typography>
+        </Grid>
+        {/* <Grid
           item
           md={3}
           sm={4}
@@ -221,7 +257,7 @@ function ProductDetails() {
             5 تا 10 متر
           </Typography>
           <Divider sx={{ width: "100%" }} />
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   );
