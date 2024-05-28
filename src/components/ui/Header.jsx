@@ -1,10 +1,21 @@
-import { AppBar, Box, InputBase, Toolbar, Link, Grid } from "@mui/material";
+import { useCartContext } from "../../contexts/CartContext";
+import { Link as RouterLink } from "react-router-dom";
+
+import {
+  AppBar,
+  Box,
+  InputBase,
+  Toolbar,
+  Link,
+  Grid,
+  Badge,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { grey } from "@mui/material/colors";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Link as RouterLink } from "react-router-dom";
 
 function Header() {
+  const { totalCartQuantity } = useCartContext();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -49,12 +60,14 @@ function Header() {
               sx={{ display: { xs: "none", md: "block" } }}
             >
               <Link component={RouterLink} to="/shoppingcart">
-                <ShoppingCartOutlinedIcon
-                  sx={{
-                    fontSize: 28,
-                    color: "#4d4d4d",
-                  }}
-                />
+                <Badge badgeContent={totalCartQuantity} color="error">
+                  <ShoppingCartOutlinedIcon
+                    sx={{
+                      fontSize: 28,
+                      color: "#4d4d4d",
+                    }}
+                  />
+                </Badge>
               </Link>
             </Grid>
           </Grid>

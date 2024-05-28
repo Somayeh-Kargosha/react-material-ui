@@ -1,8 +1,8 @@
-import Grid from "@mui/material/Grid";
+import { useLoaderData } from "react-router-dom";
 
+import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ProductItem from "../ui/ProductItem";
-import { useLoaderData } from "react-router-dom";
 
 function WashingMashineProducts() {
   const products = useLoaderData();

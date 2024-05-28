@@ -1,10 +1,17 @@
 import { Link as RouterLink } from "react-router-dom";
-import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { FormatPrice } from "../../utils/helpers";
+import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 
 function ProductItem({ product }) {
-  const { productName, imageName, price, discount, id, fileImageName, quantity } =
-    product;
+  const {
+    productName,
+    imageName,
+    price,
+    discount,
+    id,
+    fileImageName,
+    inventory,
+  } = product;
   return (
     <Grid item>
       <Paper
@@ -12,7 +19,7 @@ function ProductItem({ product }) {
         square
         sx={{
           "&:hover": {
-            boxShadow: 10,
+            boxShadow: "0 10px 20px rgba(0,0,0,.2)",
           },
 
           width: 360,
@@ -30,7 +37,7 @@ function ProductItem({ product }) {
             <Typography variant="body2" color="#415966" px={2}>
               {productName}
             </Typography>
-            {quantity <= 1 ? (
+            {inventory <= 1 ? (
               <Typography variant="subtitle1" p={3}>
                 تنها یک عدد در انبار باقی مانده
               </Typography>

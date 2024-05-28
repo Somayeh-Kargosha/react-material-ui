@@ -1,5 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "@mui/material";
 
 function ProductCategoriesItem({ to, category }) {

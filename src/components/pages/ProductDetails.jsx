@@ -1,11 +1,28 @@
-import { Box, Button, Card, Divider, Grid, Typography } from "@mui/material";
+import { useLoaderData } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { useState } from "react";
+import { useCartContext } from "../../contexts/CartContext";
+import {
+  Box,
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Link,
+  Typography,
+} from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
-import { useLoaderData } from "react-router-dom";
+
 import { FormatPrice } from "../../utils/helpers";
+import ShoppinCartButton from "../ui/ShoppingCartButton";
+import ModalAddedSuccessfully from "../ui/ModalAddedSuccessfully";
 
 function ProductDetails() {
+  const [openModal, setOpenModal] = useState(false);
+
   const products = useLoaderData();
+  const { addItem, cart, item } = useCartContext();
 
   const {
     productName,
@@ -14,19 +31,51 @@ function ProductDetails() {
     discount,
     description,
     fileImageName,
-    quantity,
+    inventory,
     latinName,
+    id,
   } = products;
+
+  const isInCart = cart.find((item) => item.id === id)?.quantity ?? 0;
+
+  function handleAddToCart() {
+    const newItem = {
+      productName,
+      fileImageName,
+      imageName,
+      price,
+      discount,
+      inventory,
+      quantity: 1,
+      id,
+    };
+    addItem(newItem);
+    setOpenModal(true);
+    setTimeout(() => {
+      setOpenModal(false);
+    }, 3000);
+  }
 
   return (
     <>
-      <Grid container sx={{ display: "flex", mt: 25, px: { sm: 2, xs: 1 } }}>
+      {openModal && (
+        <ModalAddedSuccessfully open={openModal} setOpen={setOpenModal} />
+      )}
+
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          mt: 25,
+          px: { sm: 2, xs: 1 },
+        }}
+      >
         <Grid item md={4} sm={12} marginBottom={6}>
           <Box
             component="img"
             src={`/${fileImageName}/${imageName}`}
             sx={{
-              width: { lg: "450px", md: "400px", sm: "400px", xs: "350px" },
+              width: { lg: "450px", md: "400px", sm: "400px", xs: "337px" },
             }}
           />
         </Grid>
@@ -135,7 +184,7 @@ function ProductDetails() {
             <Typography fontSize={18} color="#111" align="right">
               {FormatPrice(price - (price * discount) / 100)}
             </Typography>
-            {quantity <= 1 ? (
+            {inventory <= 1 ? (
               <Typography variant="body2" color="red" marginY={2}>
                 تنها یک عدد در انبار باقی مانده
               </Typography>
@@ -144,25 +193,38 @@ function ProductDetails() {
                 موجود در انبار دیجی کالا
               </Typography>
             )}
-            {/* <Typography variant="body2" color="red" marginY={2}>
-              تنها یک عدد در انبار باقی مانده
-            </Typography> */}
-            <Button
-              variant="contained"
-              disableElevation="false"
-              sx={{
-                width: 1 / 1,
-                bgcolor: "#e75757",
-                color: "white",
-                my: 4,
-                py: 1,
-                "&:hover": {
-                  background: "#e75757",
-                },
-              }}
-            >
-              افزودن به سبد
-            </Button>
+            {!isInCart ? (
+              <Button
+                onClick={handleAddToCart}
+                variant="contained"
+                disableElevation="false"
+                sx={{
+                  width: 1 / 1,
+                  bgcolor: "#e75757",
+                  color: "white",
+                  my: 4,
+                  py: 1,
+                  "&:hover": {
+                    background: "#e75757",
+                  },
+                }}
+              >
+                افزودن به سبد
+              </Button>
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  my: 2.5,
+                }}
+              >
+                <ShoppinCartButton item={item} />
+                <Link component={RouterLink} to="/shoppingcart">
+                  <Typography fontSize={12}>مشاهده سبد خرید &larr;</Typography>
+                </Link>
+              </Box>
+            )}
             <Typography variant="body2" margin={2} marginBottom={3}>
               گارانتی ۲۴ ماهه
             </Typography>
