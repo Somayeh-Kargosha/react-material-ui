@@ -33,7 +33,6 @@ const cartReducer = (state, action) => {
             ? {
                 ...item,
                 quantity: item.quantity - 1,
-                totalPrice: item.price * item.quantity,
               }
             : item
         ),
