@@ -23,13 +23,12 @@ function CartProvider({ children }) {
   async function decreaseItemQuantity(id) {
     dispatch({ type: "decrease-cartItem-quantity", payload: id });
   }
-  const [item] = cart.map((item) => item);
+ 
   const totalCartQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <CartContext.Provider
       value={{
         cart,
-        item,
         addItem,
         deleteItem,
         increaseItemQuantity,

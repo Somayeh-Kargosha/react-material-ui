@@ -5,7 +5,7 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { Box, Typography } from "@mui/material";
 
-function ShoppinCartButton({ item }) {
+function ShoppingCartButton({ item }) {
   const { decreaseItemQuantity, deleteItem, increaseItemQuantity } =
     useCartContext();
 
@@ -93,4 +93,4 @@ function ShoppinCartButton({ item }) {
   );
 }
 
-export default ShoppinCartButton;
+export default ShoppingCartButton;

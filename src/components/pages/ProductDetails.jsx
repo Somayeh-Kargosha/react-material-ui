@@ -15,14 +15,15 @@ import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 
 import { FormatPrice } from "../../utils/helpers";
-import ShoppinCartButton from "../ui/ShoppingCartButton";
+// import ShoppingCartButton from "../ui/ShoppingCartButton";
 import ModalAddedSuccessfully from "../ui/ModalAddedSuccessfully";
 
 function ProductDetails() {
   const [openModal, setOpenModal] = useState(false);
 
   const products = useLoaderData();
-  const { addItem, cart, item } = useCartContext();
+  const { addItem, cart } = useCartContext();
+  // const [item] = cart.map((item) => item);
 
   const {
     productName,
@@ -212,18 +213,37 @@ function ProductDetails() {
                 افزودن به سبد
               </Button>
             ) : (
-              <Box
+              <Button
+                variant="contained"
+                disableElevation="false"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  my: 2.5,
+                  width: 1 / 1,
+                  bgcolor: "#e75757",
+                  my: 4,
+                  py: 1.2,
+                  "&:hover": {
+                    background: "#e75757",
+                  },
                 }}
               >
-                <ShoppinCartButton item={item} />
                 <Link component={RouterLink} to="/shoppingcart">
-                  <Typography fontSize={12}>مشاهده سبد خرید &larr;</Typography>
+                  <Typography fontSize={14} color="white">
+                    مشاهده سبد خرید
+                  </Typography>
                 </Link>
-              </Box>
+              </Button>
+              // <Box
+              //   sx={{
+              //     display: "flex",
+              //     alignItems: "center",
+              //     my: 2.5,
+              //   }}
+              // >
+              //   {/* <ShoppingCartButton item={item} /> */}
+              //   <Link component={RouterLink} to="/shoppingcart">
+              //     <Typography fontSize={12}>مشاهده سبد خرید &larr;</Typography>
+              //   </Link>
+              // </Box>
             )}
             <Typography variant="body2" margin={2} marginBottom={3}>
               گارانتی ۲۴ ماهه

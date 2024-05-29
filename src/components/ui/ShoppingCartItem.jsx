@@ -1,5 +1,5 @@
 import { FormatPrice } from "../../utils/helpers";
-import ShoppinCartButton from "./ShoppingCartButton";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
 import { Box, Divider, Grid, Typography } from "@mui/material";
@@ -55,7 +55,7 @@ function ShoppingCartItem({ item }) {
         </Box>
       </Grid>
       <Grid item sm={4} xs={6}>
-        <ShoppinCartButton item={item} />
+        <ShoppingCartButton item={item} />
       </Grid>
       <Grid item sm={8} xs={6}>
         <Box marginY={3} marginX={1}>
