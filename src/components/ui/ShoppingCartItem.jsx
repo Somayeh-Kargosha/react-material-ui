@@ -2,7 +2,7 @@ import { FormatPrice } from "../../utils/helpers";
 import ShoppingCartButton from "./ShoppingCartButton";
 
 import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 function ShoppingCartItem({ item }) {
   const {
@@ -21,7 +21,17 @@ function ShoppingCartItem({ item }) {
   const totalPriceWithDiscount = totalPrice - (totalPrice * discount) / 100;
 
   return (
-    <Grid container marginTop={2}>
+    <Grid
+      container
+      marginTop={2}
+      sx={{
+        borderBottom: 0.5,
+        borderColor: "#e0e0e0",
+        "&:last-child": {
+          borderBottom: "none",
+        },
+      }}
+    >
       <Grid item sm={4} xs={12}>
         <Box
           component="img"
@@ -78,7 +88,6 @@ function ShoppingCartItem({ item }) {
           </Typography>
         </Box>
       </Grid>
-      <Divider sx={{ width: "100%" }} />
     </Grid>
   );
 }

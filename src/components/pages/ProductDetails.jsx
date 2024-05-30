@@ -39,6 +39,11 @@ function ProductDetails() {
   const isInCart = cart.find((item) => item.id === id)?.quantity ?? 0;
 
   const item = cart.find((item) => item.id === id);
+  const quantity = cart.find((item) => item.id === id)?.quantity ?? 1;
+  console.log(quantity);
+
+  const totalPrice = price * quantity;
+  const totalPriceWithDiscount = totalPrice - (totalPrice * discount) / 100;
 
   function handleAddToCart() {
     const newItem = {
@@ -168,7 +173,8 @@ function ProductDetails() {
               alignItems="center"
             >
               <Typography component="s" fontSize={13}>
-                {FormatPrice(price)}
+                {FormatPrice(totalPrice)}
+                {/* {FormatPrice(price)} */}
               </Typography>
               <Typography
                 component="span"
@@ -184,7 +190,8 @@ function ProductDetails() {
             </Box>
             <ErrorOutlineRoundedIcon sx={{ fontSize: 20, color: "grey" }} />
             <Typography fontSize={18} color="#111" align="right">
-              {FormatPrice(price - (price * discount) / 100)}
+              {FormatPrice(totalPriceWithDiscount)}
+              {/* {FormatPrice(price - (price * discount) / 100)} */}
             </Typography>
             {inventory <= 1 ? (
               <Typography variant="body2" color="red" marginY={2}>
