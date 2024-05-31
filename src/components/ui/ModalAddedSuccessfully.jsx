@@ -39,6 +39,7 @@ function ModalAddedSuccessfully({ open, setOpen }) {
           این کالا به سبد خرید اضافه شد!
           <Link component={RouterLink} to="/shoppingcart">
             <Button
+              variant="contained"
               sx={{
                 display: "block",
                 bgcolor: "#e75757",

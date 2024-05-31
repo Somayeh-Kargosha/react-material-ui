@@ -1,3 +1,4 @@
+import { useNavigation } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext";
 import { FormatPrice } from "../../utils/helpers";
 import EmptyCart from "../ui/EmptyCart";
@@ -6,26 +7,30 @@ import ShoppingCartItem from "../ui/ShoppingCartItem";
 import { Grid, Box, Button, Typography, Paper } from "@mui/material";
 
 function ShoppingCart() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   const { totalCartQuantity, cart } = useCartContext();
-  const totalItemPrice = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-  const totalCartPriceDiscount = cart.reduce(
-    (sum, item) =>
-      sum +
-      item.price * item.quantity -
-      (item.price * item.quantity * item.discount) / 100,
-    0
-  );
-  const totalCartPrice = cart.reduce(
-    (sum, item) =>
-      sum +
-      item.price * item.quantity -
-      (item.price * item.quantity -
-        (item.price * item.quantity * item.discount) / 100),
-    0
-  );
+
+  const totalItemPrice = () =>
+    cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const totalCartPriceDiscount = () =>
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        item.price * item.quantity -
+        (item.price * item.quantity * item.discount) / 100,
+      0
+    );
+  const totalCartPrice = () =>
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        item.price * item.quantity -
+        (item.price * item.quantity -
+          (item.price * item.quantity * item.discount) / 100),
+      0
+    );
 
   if (!cart.length) return <EmptyCart />;
   return (
@@ -40,7 +45,7 @@ function ShoppingCart() {
               سبد خرید شما
             </Typography>
             <Typography fontSize={13} paddingX={3}>
-              {`${totalCartQuantity} کالا`}
+              {`${totalCartQuantity()} کالا`}
             </Typography>
             {cart.map((item) => (
               <ShoppingCartItem item={item} key={item.id} />
@@ -56,10 +61,10 @@ function ShoppingCart() {
             <Box padding={3}>
               <Box display="flex" justifyContent="space-between">
                 <Typography fontSize={15} color="#393939">
-                  {`قیمت کالاها (${totalCartQuantity})`}
+                  {`قیمت کالاها (${totalCartQuantity()})`}
                 </Typography>
                 <Typography fontSize={15} color="#393939">
-                  {FormatPrice(totalItemPrice)}
+                  {FormatPrice(totalItemPrice())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between" marginY={2}>
@@ -67,7 +72,7 @@ function ShoppingCart() {
                   جمع سبد خرید
                 </Typography>
                 <Typography fontSize={15} color="#696969">
-                  {FormatPrice(totalCartPriceDiscount)}
+                  {FormatPrice(totalCartPriceDiscount())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between">
@@ -75,12 +80,12 @@ function ShoppingCart() {
                   سود شما از خرید
                 </Typography>
                 <Typography fontSize={15} color="#ff2727">
-                  {FormatPrice(totalCartPrice)}
+                  {FormatPrice(totalCartPrice())}
                 </Typography>
               </Box>
               <Button
                 variant="contained"
-                disableElevation="false"
+                disabled={isLoading}
                 sx={{
                   width: 1 / 1,
                   bgcolor: "#e75757",

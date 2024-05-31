@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
 import { useCartContext } from "../../contexts/CartContext";
@@ -19,6 +19,8 @@ import ShoppingCartButton from "../ui/ShoppingCartButton";
 import ModalAddedSuccessfully from "../ui/ModalAddedSuccessfully";
 
 function ProductDetails() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
   const [openModal, setOpenModal] = useState(false);
 
   const products = useLoaderData();
@@ -205,6 +207,7 @@ function ProductDetails() {
             {!isInCart ? (
               <Button
                 onClick={handleAddToCart}
+                disabled={isLoading}
                 variant="contained"
                 sx={{
                   width: 1 / 1,

@@ -60,7 +60,7 @@ function Header() {
               sx={{ display: { xs: "none", md: "block" } }}
             >
               <Link component={RouterLink} to="/shoppingcart">
-                <Badge badgeContent={totalCartQuantity} color="error">
+                <Badge badgeContent={totalCartQuantity()} color="error">
                   <ShoppingCartOutlinedIcon
                     sx={{
                       fontSize: 28,

@@ -28,7 +28,7 @@ function FooterNavigation() {
         <Link component={RouterLink} to="/shoppingcart">
           <Box display="flex" alignItems="center" margin={2}>
             <Typography color="#4d4d4d">سبد خرید</Typography>
-            <Badge badgeContent={totalCartQuantity} color="error">
+            <Badge badgeContent={totalCartQuantity()} color="error">
               <ShoppingCartOutlinedIcon
                 sx={{
                   color: "#4d4d4d",
