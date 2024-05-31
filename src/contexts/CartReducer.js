@@ -37,11 +37,6 @@ const cartReducer = (state, action) => {
             : item
         ),
       };
-    case "get-totalaCart-quantity":
-      return {
-        ...state,
-        cart: state.cart.reduce((sum, item) => sum + item.quantity, 0),
-      };
   }
 };
 

@@ -26,6 +26,28 @@ function CartProvider({ children }) {
 
   const totalCartQuantity = () =>
     cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const totalInitialPrice = () =>
+    cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const totalCartPriceWithDiscount = () =>
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        item.price * item.quantity -
+        (item.price * item.quantity * item.discount) / 100,
+      0
+    );
+  const totalDiscountPrice = () =>
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        item.price * item.quantity -
+        (item.price * item.quantity -
+          (item.price * item.quantity * item.discount) / 100),
+      0
+    );
+
   return (
     <CartContext.Provider
       value={{
@@ -35,6 +57,9 @@ function CartProvider({ children }) {
         increaseItemQuantity,
         decreaseItemQuantity,
         totalCartQuantity,
+        totalDiscountPrice,
+        totalInitialPrice,
+        totalCartPriceWithDiscount,
       }}
     >
       {children}

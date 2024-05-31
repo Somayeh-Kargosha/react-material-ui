@@ -42,7 +42,6 @@ function ProductDetails() {
 
   const item = cart.find((item) => item.id === id);
   const quantity = cart.find((item) => item.id === id)?.quantity ?? 1;
-  console.log(quantity);
 
   const totalPrice = price * quantity;
   const totalPriceWithDiscount = totalPrice - (totalPrice * discount) / 100;

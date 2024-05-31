@@ -9,28 +9,13 @@ import { Grid, Box, Button, Typography, Paper } from "@mui/material";
 function ShoppingCart() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
-  const { totalCartQuantity, cart } = useCartContext();
-
-  const totalItemPrice = () =>
-    cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  const totalCartPriceDiscount = () =>
-    cart.reduce(
-      (sum, item) =>
-        sum +
-        item.price * item.quantity -
-        (item.price * item.quantity * item.discount) / 100,
-      0
-    );
-  const totalCartPrice = () =>
-    cart.reduce(
-      (sum, item) =>
-        sum +
-        item.price * item.quantity -
-        (item.price * item.quantity -
-          (item.price * item.quantity * item.discount) / 100),
-      0
-    );
+  const {
+    totalCartQuantity,
+    totalDiscountPrice,
+    totalInitialPrice,
+    totalCartPriceWithDiscount,
+    cart,
+  } = useCartContext();
 
   if (!cart.length) return <EmptyCart />;
   return (
@@ -64,7 +49,7 @@ function ShoppingCart() {
                   {`قیمت کالاها (${totalCartQuantity()})`}
                 </Typography>
                 <Typography fontSize={15} color="#393939">
-                  {FormatPrice(totalItemPrice())}
+                  {FormatPrice(totalInitialPrice())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between" marginY={2}>
@@ -72,7 +57,7 @@ function ShoppingCart() {
                   جمع سبد خرید
                 </Typography>
                 <Typography fontSize={15} color="#696969">
-                  {FormatPrice(totalCartPriceDiscount())}
+                  {FormatPrice(totalCartPriceWithDiscount())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between">
@@ -80,7 +65,7 @@ function ShoppingCart() {
                   سود شما از خرید
                 </Typography>
                 <Typography fontSize={15} color="#ff2727">
-                  {FormatPrice(totalCartPrice())}
+                  {FormatPrice(totalDiscountPrice())}
                 </Typography>
               </Box>
               <Button
