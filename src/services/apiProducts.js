@@ -1,16 +1,14 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8000";
+import { httpService } from "./axios.config";
 
 export async function getVacuumProducts() {
   try {
-    const res = await axios.get(`${BASE_URL}/products?categoryId=1`);
+    const res = await httpService.get("/products?categoryId=1");
 
     const { data } = res;
     return data;
   } catch (error) {
     console.error(error);
-    throw Error("failed getting data");
+    throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
 
@@ -21,13 +19,13 @@ export async function vacuumProductsLoader() {
 
 export async function getWashingMachineProducts() {
   try {
-    const res = await axios.get(`${BASE_URL}/products?categoryId=2`);
+    const res = await httpService.get("/products?categoryId=2");
 
     const { data } = res;
     return data;
   } catch (error) {
     console.error(error);
-    throw Error("failed getting data");
+    throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
 
@@ -38,13 +36,13 @@ export async function washingMachineProductsLoader() {
 
 export async function getAirTreatmentProducts() {
   try {
-    const res = await axios.get(`${BASE_URL}/products?categoryId=3`);
+    const res = await httpService.get("/products?categoryId=3");
 
     const { data } = res;
     return data;
   } catch (error) {
     console.error(error);
-    throw Error("failed getting data");
+    throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
 
@@ -55,13 +53,13 @@ export async function airTreatmentProductsLoader() {
 
 export async function getProducts(id) {
   try {
-    const res = await axios.get(`${BASE_URL}/products/${id}`);
+    const res = await httpService.get(`/products/${id}`);
 
     const { data } = res;
     return data;
   } catch (error) {
     console.error(error);
-    throw Error("failed getting data");
+    throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
 

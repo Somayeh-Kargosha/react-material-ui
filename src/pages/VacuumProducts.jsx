@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 
+import ProductItem from "../components/products/ProductItem";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import ProductItem from "../ui/ProductItem";
 
-function WashingMashineProducts() {
+function VacuumProducts() {
   const products = useLoaderData();
 
   return (
@@ -18,4 +18,4 @@ function WashingMashineProducts() {
   );
 }
 
-export default WashingMashineProducts;
+export default VacuumProducts;

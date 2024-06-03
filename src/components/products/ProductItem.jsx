@@ -29,7 +29,7 @@ function ProductItem({ product }) {
         <Link component={RouterLink} to={`/product/${id}`}>
           <Box
             component="img"
-            src={`/${fileImageName}/${imageName}`}
+            src={`src/assets/img/${fileImageName}/${imageName}`}
             width="350px"
             p={5}
           />

@@ -2,18 +2,18 @@ import { Link as RouterLink } from "react-router-dom";
 import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "@mui/material";
 
-function ProductCategoriesItem({ to, category }) {
+function CategoriesItem({ to, category }) {
   const { title, imageName } = category;
   return (
     <Grid item xs={6} sm={4} md={3} lg={2}>
       <Link
         component={RouterLink}
         to={to}
-        sx={{ display: "grid", justifyItems: "center", color: "#4d4d4d" }}
+        sx={{ display: "grid", justifyItems: "center", color: "primary.light" }}
       >
         <Box
           component="img"
-          src={`/categoryImages/${imageName}`}
+          src={`src/assets/img/categoryImages/${imageName}`}
           width="130px"
           height="130px"
         />
@@ -25,4 +25,4 @@ function ProductCategoriesItem({ to, category }) {
   );
 }
 
-export default ProductCategoriesItem;
+export default CategoriesItem;

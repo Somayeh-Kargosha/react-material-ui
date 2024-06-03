@@ -1,10 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-import ProductCategoriesItem from "../ui/ProductCategoriesItem";
+import CategoriesItem from "../components/categories/CategoriesItem";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
 
 function Home() {
   const categories = useLoaderData();
@@ -16,7 +15,7 @@ function Home() {
       </Typography>
       <Grid container rowSpacing={5} columnSpacing={0} justifyContent="center">
         {categories.map((category) => (
-          <ProductCategoriesItem
+          <CategoriesItem
             category={category}
             to={`/category-${category.category}`}
             key={category.id}

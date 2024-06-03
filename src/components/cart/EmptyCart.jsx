@@ -18,8 +18,8 @@ function EmptyCart() {
               py: 10,
             }}
           >
-            <Box component="img" src="/empty-cart.svg" />
-            <Typography fontSize={20} padding={3} color="#111">
+            <Box component="img" src="src/assets/img/empty-cart.svg" />
+            <Typography fontSize={20} padding={3} color="primary.dark">
               سبد خرید شما خالی است!
             </Typography>
             <Link component={RouterLink} to="/">

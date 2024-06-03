@@ -1,10 +1,10 @@
+import ProductItem from "../components/products/ProductItem";
 import { useLoaderData } from "react-router-dom";
 
-import ProductItem from "../ui/ProductItem";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-function VacuumProducts() {
+function AirTreatmentProducts() {
   const products = useLoaderData();
 
   return (
@@ -18,4 +18,4 @@ function VacuumProducts() {
   );
 }
 
-export default VacuumProducts;
+export default AirTreatmentProducts;

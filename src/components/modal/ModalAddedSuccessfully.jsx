@@ -29,7 +29,7 @@ function ModalAddedSuccessfully({ open, setOpen }) {
             fontSize: 15,
             textAlign: "center",
             backgroundColor: "#ffffff",
-            color: "#111111",
+            color: "primary.dark",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -40,18 +40,14 @@ function ModalAddedSuccessfully({ open, setOpen }) {
           <Link component={RouterLink} to="/shoppingcart">
             <Button
               variant="contained"
+              color="secondary"
               sx={{
                 display: "block",
-                bgcolor: "#e75757",
                 my: 4,
                 py: 1,
                 px: 4,
                 width: 200,
                 textWrap: "nowrap",
-
-                "&:hover": {
-                  background: "#e75757",
-                },
               }}
             >
               <Typography fontSize={14} color="#fff">

@@ -1,16 +1,14 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8000";
+import { httpService } from "./axios.config";
 
 export async function getCategories() {
   try {
-    const res = await axios.get(`${BASE_URL}/categories`);
+    const res = await httpService.get("/categories");
 
     const { data } = res;
     return data;
   } catch (error) {
     console.error(error);
-    throw Error("failed getting data");
+    throw Error("صفحه مورد نظر یافت نشد");
   }
 }
 

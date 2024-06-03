@@ -1,27 +1,12 @@
-import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
-// import VazirMedium from "./fonts/Vazir-Medium.woff2";
-import VazirMediumFD from "./fonts/Vazir-Medium-FD.woff2";
 import { grey } from "@mui/material/colors";
-
-import AppLayout from "./components/ui/AppLayout";
-import Home from "./components/pages/Home";
-import VacuumProducts from "./components/pages/VacuumProducts";
-import WashingMashineProducts from "./components/pages/WashingMashineProducts";
-import ProductDetails from "./components/pages/ProductDetails";
-import ShoppingCart from "./components/pages/ShoppingCart";
-import { loader as categoriesLoader } from "./services/apiCategories";
-import {
-  airTreatmentProductsLoader,
-  vacuumProductsLoader,
-  washingMachineProductsLoader,
-} from "./services/apiProducts";
-
-import { productsLoader } from "./services/apiProducts";
-import Error from "./components/ui/Error";
-import AirTreatmentProducts from "./components/pages/AirTreatmentProducts";
+import VazirMediumFD from "./assets/fonts/Vazir-Medium-FD.woff2";
+// import VazirMedium from "./fonts/Vazir-Medium.woff2";
+// import IRANSansWeb from "./assets/fonts/woff2/IRANSansWeb_Medium.woff2";
 
 const theme = createTheme({
   direction: "rtl",
@@ -40,10 +25,13 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: 11,
-      color: "#ef5350",
+      color: "#ef4056",
     },
   },
-  palette: { primary: { main: grey[100] } },
+  palette: {
+    primary: { main: grey[100], light: "#4d4d4d", dark: "#111" },
+    secondary: { main: "#ef4056", light: "", dark: "" },
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
@@ -60,49 +48,6 @@ const theme = createTheme({
     },
   },
 });
-
-const router = createBrowserRouter([
-  {
-    element: <AppLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        loader: categoriesLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/category-vacuum-cleaner",
-        element: <VacuumProducts />,
-        loader: vacuumProductsLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/category-washing-machine",
-        element: <WashingMashineProducts />,
-        loader: washingMachineProductsLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/category-air-treatment",
-        element: <AirTreatmentProducts />,
-        loader: airTreatmentProductsLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/product/:productId",
-        element: <ProductDetails />,
-        loader: productsLoader,
-        errorElement: <Error />,
-      },
-      {
-        path: "/shoppingcart",
-        element: <ShoppingCart />,
-      },
-    ],
-  },
-]);
 
 function App() {
   return (

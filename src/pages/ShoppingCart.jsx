@@ -1,9 +1,9 @@
 import { useNavigation } from "react-router-dom";
-import { useCartContext } from "../../contexts/CartContext";
-import { FormatPrice } from "../../utils/helpers";
-import EmptyCart from "../ui/EmptyCart";
+import { useCartContext } from "../contexts/CartContext";
+import { FormatPrice } from "../utils/helpers";
+import EmptyCart from "../components/cart/EmptyCart";
 
-import ShoppingCartItem from "../ui/ShoppingCartItem";
+import ShoppingCartItem from "../components/cart/ShoppingCartItem";
 import { Grid, Box, Button, Typography, Paper } from "@mui/material";
 
 function ShoppingCart() {
@@ -26,7 +26,7 @@ function ShoppingCart() {
             variant="outlined"
             sx={{ borderRadius: 2, border: 1, borderColor: "#ededed" }}
           >
-            <Typography fontSize={16} padding={3} color="#111">
+            <Typography fontSize={16} padding={3} color="primary.dark">
               سبد خرید شما
             </Typography>
             <Typography fontSize={13} paddingX={3}>
@@ -45,41 +45,36 @@ function ShoppingCart() {
           >
             <Box padding={3}>
               <Box display="flex" justifyContent="space-between">
-                <Typography fontSize={15} color="#393939">
+                <Typography fontSize={15} color="primary.dark">
                   {`قیمت کالاها (${totalCartQuantity()})`}
                 </Typography>
-                <Typography fontSize={15} color="#393939">
+                <Typography fontSize={15} color="primary.dark">
                   {FormatPrice(totalInitialPrice())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between" marginY={2}>
-                <Typography fontSize={15} color="#696969">
-                  جمع سبد خرید
-                </Typography>
-                <Typography fontSize={15} color="#696969">
+                <Typography fontSize={15}>جمع سبد خرید</Typography>
+                <Typography fontSize={15}>
                   {FormatPrice(totalCartPriceWithDiscount())}
                 </Typography>
               </Box>
               <Box display="flex" justifyContent="space-between">
-                <Typography fontSize={15} color="#ff2727">
+                <Typography fontSize={15} color="secondary">
                   سود شما از خرید
                 </Typography>
-                <Typography fontSize={15} color="#ff2727">
+                <Typography fontSize={15} color="secondary">
                   {FormatPrice(totalDiscountPrice())}
                 </Typography>
               </Box>
               <Button
                 variant="contained"
+                color="secondary"
                 disabled={isLoading}
                 sx={{
                   width: 1 / 1,
-                  bgcolor: "#e75757",
                   color: "white",
                   mt: 10,
                   py: 1.5,
-                  "&:hover": {
-                    background: "#e75757",
-                  },
                 }}
               >
                 تایید و تکمیل سفارش

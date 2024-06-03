@@ -1,7 +1,7 @@
 import { useLoaderData, useNavigation } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
-import { useCartContext } from "../../contexts/CartContext";
+import { useCartContext } from "../contexts/CartContext";
 import {
   Box,
   Button,
@@ -14,9 +14,9 @@ import {
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 
-import { FormatPrice } from "../../utils/helpers";
-import ShoppingCartButton from "../ui/ShoppingCartButton";
-import ModalAddedSuccessfully from "../ui/ModalAddedSuccessfully";
+import { FormatPrice } from "../utils/helpers";
+import ShoppingCartButton from "../components/cart/ShoppingCartButton";
+import ModalAddedSuccessfully from "../components/modal/ModalAddedSuccessfully";
 
 function ProductDetails() {
   const navigation = useNavigation();
@@ -81,7 +81,7 @@ function ProductDetails() {
         <Grid item md={4} sm={12} marginBottom={6}>
           <Box
             component="img"
-            src={`/${fileImageName}/${imageName}`}
+            src={`/src/assets/img/${fileImageName}/${imageName}`}
             sx={{
               width: { lg: "450px", md: "400px", sm: "400px", xs: "337px" },
             }}
@@ -89,7 +89,7 @@ function ProductDetails() {
         </Grid>
         <Grid item md={4.5} sm={7} xs={12}>
           <Box padding={2}>
-            <Typography variant="h6" color="#111">
+            <Typography variant="h6" color="primary.dark">
               {productName}
             </Typography>
             <Box my="40px">
@@ -99,7 +99,7 @@ function ProductDetails() {
                 </Typography>
               </Divider>
             </Box>
-            <Typography fontSize="16px" color="#111" marginY={3}>
+            <Typography fontSize="16px" color="primary.dark" marginY={3}>
               رنگ: مشکی ، قرمز ، خاکستری
             </Typography>
             <Box>
@@ -179,7 +179,7 @@ function ProductDetails() {
               </Typography>
               <Typography
                 component="span"
-                bgcolor="#d43131"
+                bgcolor="secondary.main"
                 paddingX={1}
                 borderRadius={5}
                 color="white"
@@ -190,12 +190,12 @@ function ProductDetails() {
               </Typography>
             </Box>
             <ErrorOutlineRoundedIcon sx={{ fontSize: 20, color: "grey" }} />
-            <Typography fontSize={18} color="#111" align="right">
+            <Typography fontSize={18} color="primary.dark" align="right">
               {FormatPrice(totalPriceWithDiscount)}
               {/* {FormatPrice(price - (price * discount) / 100)} */}
             </Typography>
             {inventory <= 1 ? (
-              <Typography variant="body2" color="red" marginY={2}>
+              <Typography variant="body2" color="secondary" marginY={2}>
                 تنها یک عدد در انبار باقی مانده
               </Typography>
             ) : (
@@ -205,18 +205,15 @@ function ProductDetails() {
             )}
             {!isInCart ? (
               <Button
+                color="secondary"
                 onClick={handleAddToCart}
                 disabled={isLoading}
                 variant="contained"
                 sx={{
                   width: 1 / 1,
-                  bgcolor: "#e75757",
                   color: "white",
                   my: 4,
                   py: 1,
-                  "&:hover": {
-                    background: "#e75757",
-                  },
                 }}
               >
                 افزودن به سبد
@@ -254,7 +251,7 @@ function ProductDetails() {
         <Grid item sm={1} xs={12}>
           <Typography
             fontSize={18}
-            color="#111"
+            color="primary.dark"
             sx={{
               textDecoration: "underline red 2px",
               textUnderlineOffset: 13,

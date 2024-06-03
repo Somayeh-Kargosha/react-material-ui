@@ -41,10 +41,10 @@ function ShoppingCartButton({ item }) {
           <Box
             component="button"
             disabled={isDisabled}
+            color="secondary.main"
             sx={{
               border: "none",
               background: "none",
-              color: "#ff5454",
             }}
           >
             <AddOutlinedIcon
@@ -53,7 +53,7 @@ function ShoppingCartButton({ item }) {
             />
           </Box>
           <Box sx={{ textAlign: "center" }}>
-            <Typography color="#ff5454" fontSize={18}>
+            <Typography color="secondary" fontSize={18}>
               {quantity}
             </Typography>
             {isDisabled && (
@@ -66,10 +66,10 @@ function ShoppingCartButton({ item }) {
             <Box
               component="button"
               onClick={handleDeleteFromCart}
+              color="secondary.main"
               sx={{
                 border: "none",
                 background: "none",
-                color: "#ff5454",
               }}
             >
               <DeleteOutlinedIcon sx={{ fontSize: 22 }} />

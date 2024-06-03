@@ -25,7 +25,7 @@ function Header() {
               <Link component={RouterLink} to="/">
                 <Box
                   component="img"
-                  src="/logo.svg"
+                  src="/src/assets/img/logo.svg"
                   sx={{
                     maxWidth: { xs: 80, sm: 110 },
                     mt: { sm: 1 },
@@ -60,7 +60,7 @@ function Header() {
               sx={{ display: { xs: "none", md: "block" } }}
             >
               <Link component={RouterLink} to="/shoppingcart">
-                <Badge badgeContent={totalCartQuantity()} color="error">
+                <Badge badgeContent={totalCartQuantity()} color="secondary">
                   <ShoppingCartOutlinedIcon
                     sx={{
                       fontSize: 28,

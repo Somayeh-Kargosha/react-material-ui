@@ -35,7 +35,7 @@ function ShoppingCartItem({ item }) {
       <Grid item sm={4} xs={12}>
         <Box
           component="img"
-          src={`/${fileImageName}/${imageName}`}
+          src={`src/assets/img/${fileImageName}/${imageName}`}
           width="140px"
         />
       </Grid>
