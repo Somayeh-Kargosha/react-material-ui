@@ -75,7 +75,7 @@ function ShoppingCartItem({ item }) {
           <Typography variant="body2" fontSize={18}>
             {FormatPrice(totalPriceWithDiscount)}
           </Typography>
-          <Typography variant="subtitle1" marginY={1}>
+          <Box marginY={1}>
             {inventory <= 1 ? (
               <Typography variant="subtitle1" p={3}>
                 تنها یک عدد در انبار باقی مانده
@@ -85,7 +85,7 @@ function ShoppingCartItem({ item }) {
                 موجود در انبار دیجی کالا
               </Typography>
             )}
-          </Typography>
+          </Box>
         </Box>
       </Grid>
     </Grid>
