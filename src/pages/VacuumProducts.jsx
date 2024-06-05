@@ -1,11 +1,18 @@
-import { useLoaderData } from "react-router-dom";
 
 import ProductItem from "../components/products/ProductItem";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { getVacuumProducts } from "../services/apiProducts";
+import Loader from "../components/loader/Loader";
+import { useQuery } from "@tanstack/react-query";
 
 function VacuumProducts() {
-  const products = useLoaderData();
+  const { isLoading, data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: getVacuumProducts,
+  });
+
+  if (isLoading) return <Loader />;
 
   return (
     <Box sx={{ px: 4, my: 20 }}>

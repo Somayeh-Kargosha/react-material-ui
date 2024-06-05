@@ -1,11 +1,17 @@
-import { useLoaderData } from "react-router-dom";
-
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ProductItem from "../components/products/ProductItem";
+import { getWashingMachineProducts } from "../services/apiProducts";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../components/loader/Loader";
 
 function WashingMashineProducts() {
-  const products = useLoaderData();
+  const { isLoading, data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: getWashingMachineProducts,
+  });
+
+  if (isLoading) return <Loader />;
 
   return (
     <Box sx={{ px: 4, my: 20 }}>

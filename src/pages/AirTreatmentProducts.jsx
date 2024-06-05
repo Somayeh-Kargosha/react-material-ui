@@ -1,11 +1,20 @@
 import ProductItem from "../components/products/ProductItem";
-import { useLoaderData } from "react-router-dom";
+
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Loader from "../components/loader/Loader";
+import { useQuery } from "@tanstack/react-query";
+import { getAirTreatmentProducts } from "../services/apiProducts";
 
 function AirTreatmentProducts() {
-  const products = useLoaderData();
+ 
+  const { isLoading, data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: getAirTreatmentProducts,
+  });
+
+  if (isLoading) return <Loader />;
 
   return (
     <Box sx={{ px: 4, my: 20 }}>

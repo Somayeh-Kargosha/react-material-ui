@@ -11,8 +11,3 @@ export async function getCategories() {
     throw Error("صفحه مورد نظر یافت نشد");
   }
 }
-
-export async function loader() {
-  const categories = await getCategories();
-  return categories;
-}

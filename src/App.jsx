@@ -5,6 +5,8 @@ import router from "./routes";
 
 import { grey } from "@mui/material/colors";
 import VazirMediumFD from "./assets/fonts/Vazir-Medium-FD.woff2";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // import VazirMedium from "./fonts/Vazir-Medium.woff2";
 // import IRANSansWeb from "./assets/fonts/woff2/IRANSansWeb_Medium.woff2";
 
@@ -49,13 +51,23 @@ const theme = createTheme({
   },
 });
 
+const queryClinet = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <QueryClientProvider client={queryClinet}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <RouterProvider router={router} />
-    </ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

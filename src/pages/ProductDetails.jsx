@@ -1,5 +1,5 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
-import { Link as RouterLink } from "react-router-dom";
+
+import { Link as RouterLink, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useCartContext } from "../contexts/CartContext";
 import {
@@ -18,13 +18,27 @@ import { FormatPrice } from "../utils/helpers";
 import ShoppingCartButton from "../components/cart/ShoppingCartButton";
 import ModalAddedSuccessfully from "../components/modal/ModalAddedSuccessfully";
 
+import { getProducts } from "../services/apiProducts";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../components/loader/Loader";
+
 function ProductDetails() {
-  const navigation = useNavigation();
-  const isLoading = navigation.state === "loading";
+  const { productId } = useParams();
+  function useProductData(id) {
+    const data = useQuery({
+      queryKey: ["product", id],
+      queryFn: getProducts,
+    });
+    return data;
+  }
+
+  const { isLoading, data: product } = useProductData(productId);
+
   const [openModal, setOpenModal] = useState(false);
 
-  const products = useLoaderData();
   const { addItem, cart } = useCartContext();
+
+  if (isLoading) return <Loader />;
 
   const {
     productName,
@@ -36,7 +50,7 @@ function ProductDetails() {
     inventory,
     latinName,
     id,
-  } = products;
+  } = product;
 
   const isInCart = cart.find((item) => item.id === id)?.quantity ?? 0;
 

@@ -12,10 +12,7 @@ export async function getVacuumProducts() {
   }
 }
 
-export async function vacuumProductsLoader() {
-  const vacuumProducts = await getVacuumProducts();
-  return vacuumProducts;
-}
+
 
 export async function getWashingMachineProducts() {
   try {
@@ -29,10 +26,7 @@ export async function getWashingMachineProducts() {
   }
 }
 
-export async function washingMachineProductsLoader() {
-  const washingMachineProducts = await getWashingMachineProducts();
-  return washingMachineProducts;
-}
+
 
 export async function getAirTreatmentProducts() {
   try {
@@ -46,15 +40,12 @@ export async function getAirTreatmentProducts() {
   }
 }
 
-export async function airTreatmentProductsLoader() {
-  const airTreatmentProducts = await getAirTreatmentProducts();
-  return airTreatmentProducts;
-}
 
-export async function getProducts(id) {
+
+export async function getProducts({ queryKey }) {
   try {
+    const id = queryKey[1];
     const res = await httpService.get(`/products/${id}`);
-
     const { data } = res;
     return data;
   } catch (error) {
@@ -63,7 +54,3 @@ export async function getProducts(id) {
   }
 }
 
-export async function productsLoader({ params }) {
-  const products = await getProducts(params.productId);
-  return products;
-}
