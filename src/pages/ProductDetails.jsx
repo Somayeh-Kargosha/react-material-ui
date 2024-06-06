@@ -1,4 +1,3 @@
-
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useCartContext } from "../contexts/CartContext";
@@ -24,15 +23,10 @@ import Loader from "../components/loader/Loader";
 
 function ProductDetails() {
   const { productId } = useParams();
-  function useProductData(id) {
-    const data = useQuery({
-      queryKey: ["product", id],
-      queryFn: getProducts,
-    });
-    return data;
-  }
-
-  const { isLoading, data: product } = useProductData(productId);
+  const { isLoading, data: product } = useQuery({
+    queryKey: ["product", productId],
+    queryFn: getProducts,
+  });
 
   const [openModal, setOpenModal] = useState(false);
 

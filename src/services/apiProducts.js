@@ -12,8 +12,6 @@ export async function getVacuumProducts() {
   }
 }
 
-
-
 export async function getWashingMachineProducts() {
   try {
     const res = await httpService.get("/products?categoryId=2");
@@ -25,8 +23,6 @@ export async function getWashingMachineProducts() {
     throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
-
-
 
 export async function getAirTreatmentProducts() {
   try {
@@ -40,8 +36,6 @@ export async function getAirTreatmentProducts() {
   }
 }
 
-
-
 export async function getProducts({ queryKey }) {
   try {
     const id = queryKey[1];
@@ -53,4 +47,3 @@ export async function getProducts({ queryKey }) {
     throw Error("صفحه ای که در جستجوی آن هستید وجود ندارد");
   }
 }
-
