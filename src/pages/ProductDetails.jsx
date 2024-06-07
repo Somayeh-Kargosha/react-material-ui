@@ -17,16 +17,13 @@ import { FormatPrice } from "../utils/helpers";
 import ShoppingCartButton from "../components/cart/ShoppingCartButton";
 import ModalAddedSuccessfully from "../components/modal/ModalAddedSuccessfully";
 
-import { getProducts } from "../services/apiProducts";
-import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/loader/Loader";
+import { useGetProducts } from "../components/products/useGetProducts";
 
 function ProductDetails() {
   const { productId } = useParams();
-  const { isLoading, data: product } = useQuery({
-    queryKey: ["product", productId],
-    queryFn: getProducts,
-  });
+
+  const { isLoading, product = {} } = useGetProducts(productId);
 
   const [openModal, setOpenModal] = useState(false);
 

@@ -1,15 +1,12 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ProductItem from "../components/products/ProductItem";
-import { getWashingMachineProducts } from "../services/apiProducts";
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../components/loader/Loader";
 
-function WashingMashineProducts() {
-  const { isLoading, data: products } = useQuery({
-    queryKey: ["products"],
-    queryFn: getWashingMachineProducts,
-  });
+import Loader from "../components/loader/Loader";
+import { useGetWashingMachineProducts } from "../components/products/useGetWashingMachineProducts";
+
+function WashingMachineProducts() {
+  const { isLoading, products } = useGetWashingMachineProducts();
 
   if (isLoading) return <Loader />;
 
@@ -24,4 +21,4 @@ function WashingMashineProducts() {
   );
 }
 
-export default WashingMashineProducts;
+export default WashingMachineProducts;

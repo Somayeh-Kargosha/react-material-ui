@@ -1,11 +1,11 @@
-import { Link as RouterLink } from "react-router-dom";
-
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import { Alert, Button, Link, Typography } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
+import { useCartContext } from "../../contexts/CartContext";
 
-function ModalAddedSuccessfully({ open, setOpen }) {
+function ModalConfirmCartItemDelete({ open, setOpen, id }) {
+  const { deleteItem } = useCartContext();
   const handleClose = () => setOpen(false);
   return (
     <Modal
@@ -23,10 +23,11 @@ function ModalAddedSuccessfully({ open, setOpen }) {
     >
       <Fade in={open}>
         <Alert
+          severity="warning"
           onClose={() => setOpen(false)}
           sx={{
             position: "absolute",
-            fontSize: 15,
+            fontSize: 18,
             textAlign: "center",
             backgroundColor: "#ffffff",
             color: "primary.dark",
@@ -34,32 +35,39 @@ function ModalAddedSuccessfully({ open, setOpen }) {
             left: "50%",
             transform: "translate(-50%, -50%)",
             textWrap: "nowrap",
-            pt: 2,
+            p: 4,
+            pb: 5,
           }}
         >
-          این کالا به سبد خرید اضافه شد!
-          <Link component={RouterLink} to="/shoppingcart">
+          آیا این محصول از سبد خرید حذف شود؟
+          <Box sx={{ display: "block", mt: 4 }}>
             <Button
+              onClick={handleClose}
               variant="contained"
               color="secondary"
               sx={{
-                display: "block",
-                my: 4,
                 py: 1,
-                px: 4,
-                width: 200,
-                textWrap: "nowrap",
               }}
             >
-              <Typography fontSize={14} color="#fff">
-                مشاهده سبد خرید
-              </Typography>
+              Cancel
             </Button>
-          </Link>
+            <Button
+              onClick={() => deleteItem(id)}
+              variant="contained"
+              color="secondary"
+              sx={{
+                py: 1,
+                ml: 4,
+                px: 4,
+              }}
+            >
+              OK
+            </Button>
+          </Box>
         </Alert>
       </Fade>
     </Modal>
   );
 }
 
-export default ModalAddedSuccessfully;
+export default ModalConfirmCartItemDelete;

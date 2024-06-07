@@ -1,19 +1,12 @@
 import ProductItem from "../components/products/ProductItem";
 
-
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Loader from "../components/loader/Loader";
-import { useQuery } from "@tanstack/react-query";
-import { getAirTreatmentProducts } from "../services/apiProducts";
+import { useGetAirTreatmentProducts } from "../components/products/useGetAirTreatmentProducts";
 
 function AirTreatmentProducts() {
- 
-  const { isLoading, data: products } = useQuery({
-    queryKey: ["products"],
-    queryFn: getAirTreatmentProducts,
-  });
-
+  const { isLoading, products } = useGetAirTreatmentProducts();
   if (isLoading) return <Loader />;
 
   return (

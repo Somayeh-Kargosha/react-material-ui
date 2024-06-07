@@ -3,7 +3,7 @@ import AppLayout from "../components/layouts/AppLayout";
 import Error from "../components/ui/Error";
 import Home from "../pages/Home";
 import VacuumProducts from "../pages/VacuumProducts";
-import WashingMashineProducts from "../pages/WashingMashineProducts";
+import WashingMachineProducts from "../pages/WashingMachineProducts";
 import AirTreatmentProducts from "../pages/AirTreatmentProducts";
 import ProductDetails from "../pages/ProductDetails";
 import ShoppingCart from "../pages/ShoppingCart";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/category-washing-machine",
-        element: <WashingMashineProducts />,
+        element: <WashingMachineProducts />,
         errorElement: <Error />,
       },
       {

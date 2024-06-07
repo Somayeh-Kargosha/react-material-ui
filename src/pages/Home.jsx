@@ -3,16 +3,12 @@ import CategoriesItem from "../components/categories/CategoriesItem";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "../services/apiCategories";
+
 import Loader from "../components/loader/Loader";
+import { useGetCategories } from "../components/categories/useGetCategories";
 
 function Home() {
-  const { isLoading, data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
-  });
-
+  const { isLoading, categories } = useGetCategories();
   if (isLoading) return <Loader />;
   return (
     <Container sx={{ marginY: 20, color: "#4d4d4d" }}>

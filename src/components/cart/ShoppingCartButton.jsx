@@ -4,25 +4,36 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { Box, Typography } from "@mui/material";
+import ModalConfirmCartItemDelete from "../modal/ModalConfirmCartItemDelete";
+import { useState } from "react";
 
 function ShoppingCartButton({ item }) {
-  const { decreaseItemQuantity, deleteItem, increaseItemQuantity } =
-    useCartContext();
+  const { decreaseItemQuantity, increaseItemQuantity } = useCartContext();
+  const [openModal, setOpenModal] = useState(false);
 
   const { inventory, id, quantity } = item;
 
   const isDisabled = quantity >= 10 || inventory <= 1;
 
   function handleDeleteFromCart() {
-    const answer = window.confirm("آیا محصول از سبد خرید حذف شود؟");
-
-    if (answer) {
-      deleteItem(id);
-    }
+    setOpenModal(true);
+    // const answer = window.confirm("آیا محصول از سبد خرید حذف شود؟");
+    // if (answer) {
+    //   deleteItem(id);
+    // }
   }
 
   return (
     <>
+      (
+      {openModal && (
+        <ModalConfirmCartItemDelete
+          open={openModal}
+          setOpen={setOpenModal}
+          id={id}
+        />
+      )}
+      )
       <Box marginX={3} marginY={3}>
         <Box
           component="span"
